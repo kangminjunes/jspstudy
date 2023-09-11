@@ -1,8 +1,7 @@
 package ex02_request;
 
 import java.io.IOException;
-import java.util.Optional;
-
+import java.util.Arrays;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -73,9 +72,22 @@ public class RequestServiet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+  protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    // TODO Auto-generated method stub
+    response.getWriter().append("Served at: ").append(request.getContextPath());
+    
+    // 1. 요청을 UTF-8로 인코딩한다.
+    request.setCharacterEncoding("UTF-8");
+    
+    // 2. 동일한 요청 파라미터가 2개 이상 전달되는 경우 getParameterValues() 메소드를 이용해서 요청 파라미터들을 배열로 받는다.
+    String[] tel = request.getParameterValues("tel");
+    String[] hobbies = request.getParameterValues("hobbies");
+    
+    System.out.println(Arrays.toString(tel));
+    System.out.println(Arrays.toString(hobbies));
+    
+    
+    
 	}
 
 }

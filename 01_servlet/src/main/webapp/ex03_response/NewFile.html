@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+  <div>
+    <!-- 해당 폼외부에 input 작성시 해당 데이터는 서버로 전송이 불가능하다. -->
+    <form method="get" action="/servlet/response">
+      <div>
+        <!-- 서버에서 name="gender"은 string으로 받는다 아무리해도 1개만 선택이 가능하기 떄문이다. -->
+        <input type="radio" name="gender" value="man" id="man">
+        <label for="man">남자</label>
+        <input type="radio" name="gender" value="woman" id="woman">
+        <label for="woman">여자</label>
+        <input type="radio" name="gender" value="none" id="none" checked>
+        <label for="none">선택안함</label>
+      </div>
+      <div>
+        <!-- 파라미터로 보낼려면 name 속성이 필요하다 즉 name 여기선 파라미터이다. -->
+        <input type="text" list="domain" name="domain">
+        <!--  데이터 리스트와 연결된것이다. -->
+        <datalist id="domain">
+          <option value="naver.com" />
+          <option value="kakao.com" />
+          <option value="gmail.com" />
+        </datalist>
+      </div>
+      <div>
+        <textarea rows="5" cols="50" name="content"></textarea>
+      </div>
+      <div>
+        <!--  사용자가 입력하지 않아도 보내고 싶은 값이 존재할떄 사용 -->
+        <!--  hidden은 입력처리가 불가능하기에 name, value 둘다 필요하다. -->
+        <input type="hidden" name="region" value="seoul">
+        <button type="submit">전송하기</button>
+      </div>
+    </form>
+  </div>
+
+</body>
+</html>

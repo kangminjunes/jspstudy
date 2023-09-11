@@ -61,5 +61,38 @@
     })
   </script>
   
+  <hr>
+  <!-- 4. 동일한 파라미터를 2개 이상 요청하기 -->
+  <!--  value값의 여부는 사용자가 값을 입력한다. 필요X-->
+  <!--  value값의 여부는 사용자가 값을 입력하지 않는다. 필요O-->
+  <div>
+    <form method="post" action="/servlet/request">
+    <!--  해당 데이터는 doPOST로 넘어간다. -->
+      <div>
+      <!--  서로 다른태크에 같은 이름을 주어도 동일한 파라미터로 인식된다. -->
+        <select name="tel">
+          <option>010</option> <!-- <option value="010">010</option> -->
+          <option>02</option>   <!-- <option value="02">02</option> -->
+          <option>031</option> <!-- <option value="031"/>도 가능함 -->
+        </select>
+        <!--  input에 value 가없는건 사용자가 입력하는거이기에 안들어가는것이다. -->
+        <input type="text" name="tel">
+        <input type="text" name="tel">
+      </div>
+      <div>
+        <!-- value가 없으면 빈문자열이 전송된다. 해당은 사용자가 입력하는것이 아니기에 필요하다. -->
+        <input type="checkbox" name="hobbies" value="travel" id="travel">
+        <label for="travel">여행</label>
+        <input type="checkbox" name="hobbies" value="game" id="game">
+        <label for="game">게임</label>
+        <input type="checkbox" name="hobbies" value="golf" id="golf">
+        <label for="golf">골프</label>
+      </div>
+      <div>
+        <button type="submit">전송</button>
+      </div>
+    </form>
+  </div>
+  
 </body>
 </html>
