@@ -1,4 +1,4 @@
-package ex05_redirect;
+package servlet_ex;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -8,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class Redirect2
+ * Servlet implementation class servlet
  */
-@WebServlet("/redirect2")
-public class Redirect2 extends HttpServlet {
+@WebServlet("/servlet")
+public class servlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Redirect2() {
+    public servlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -25,16 +25,17 @@ public class Redirect2 extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-	  // 1. 요청 인코딩
-	  request.setCharacterEncoding("UTF-8");
-	  
-	  // 2. 요청 파라미터
-	  String name = request.getParameter("name");
-	  
-	  System.out.println("redirect: " + name);
-	  
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+      // 1. 요청 인코딩
+      request.setCharacterEncoding("UTF-8");
+      
+      // 2. 요청 파라미터
+      String gender = request.getParameter("gender");
+      String domain = request.getParameter("domain");
+      String content = request.getParameter("content");
+      String region = request.getParameter("region");
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
@@ -43,7 +44,6 @@ public class Redirect2 extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
-
 	}
 
 }
