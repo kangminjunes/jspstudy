@@ -3,6 +3,28 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+<style>
+  label {
+    display: block;
+    margin-top: 20px;
+  }
+</style>
+<script>
+  $(function(){
+    $('#frm_join').on('submit', function(event){
+      // 아이디 공백 체크
+      if($('#id').val() ==''){
+        alert('아이디는 필수입니다.');
+        $('#id').focus();
+        event.preventDefault(); // submit 방지
+        return;                 // 아래 코드를 할 필요 없다.
+      }
+      // 비밀번호 입력 체크
+      if($('#pw').val() == '' || $('#pw').val() !=)
+    })
+  })
+</script>
 </head>
 <body>
 
