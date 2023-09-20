@@ -18,8 +18,9 @@ public class BoardServiceImpl implements BoardService {
   private BoardDao dao = BoardDao.getDao();
   private PageVo pageVo = new PageVo();
 
+  // 기사 등록하기
   @Override
-  public ActionForward register(HttpServletRequest request) {
+  public ActionForward addArticle(HttpServletRequest request) {
     
     // 등록할 제목과 내용
     String title = request.getParameter("title");
@@ -47,8 +48,9 @@ public class BoardServiceImpl implements BoardService {
     
   }
 
+  // 전체 기사 목록 가져오기
   @Override
-  public ActionForward getBoardList(HttpServletRequest request) {
+  public ActionForward getArticleList(HttpServletRequest request) {
     
     /* page, total, display 정보가 있어야 목록을 가져올 수 있다. */
     
@@ -78,8 +80,9 @@ public class BoardServiceImpl implements BoardService {
     
   }
   
+  // 기사번호 등록하기
   @Override
-  public ActionForward getBoardByNo(HttpServletRequest request) {
+  public ActionForward getArticleByNo(HttpServletRequest request) {
     
     // 상세조회할 게시글 번호
     Optional<String> opt = Optional.ofNullable(request.getParameter("board_no"));
@@ -94,8 +97,9 @@ public class BoardServiceImpl implements BoardService {
     
   }
 
+  // 기사 수정화면으로 가기
   @Override
-  public ActionForward edit(HttpServletRequest request) {
+  public ActionForward editArticle(HttpServletRequest request) {
     
     // 편집할 게시글 번호
     Optional<String> opt = Optional.ofNullable(request.getParameter("board_no"));
@@ -110,8 +114,9 @@ public class BoardServiceImpl implements BoardService {
     
   }
   
+  // 기사 수정하기
   @Override
-  public ActionForward modify(HttpServletRequest request) {
+  public ActionForward modifyArticle(HttpServletRequest request) {
     
     // 수정할 게시글 정보
     String title = request.getParameter("title");
@@ -141,8 +146,9 @@ public class BoardServiceImpl implements BoardService {
     
   }
   
+  // 기사 삭제하기
   @Override
-  public ActionForward delete(HttpServletRequest request) {
+  public ActionForward deleteArticle(HttpServletRequest request) {
     
     // 삭제할 게시글 번호
     Optional<String> opt = Optional.ofNullable(request.getParameter("board_no"));
