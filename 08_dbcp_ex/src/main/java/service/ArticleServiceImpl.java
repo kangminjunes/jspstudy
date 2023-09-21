@@ -137,5 +137,23 @@ public class ArticleServiceImpl implements ArticleService {
     return new ActionForward(path, true);
 
   }
+  
+  @Override
+  public ActionForward delete(HttpServletRequest request) {
+    
+    String articles = request.getParameter("articles");
+    
+    int deleteResult = dao.articleDelete(articles);
+    
+    String path = null;
+    if(deleteResult > 0) {  // 혹은 해당방식으로 가능 if(deleteResult == articles.split(",").length)
+      path = request.getContextPath() + "/getArticleList.do";
+    } else {
+      path = request.getContextPath() + "/index.do";
+    }
+    
+    return new ActionForward(path, true);
+    
+  }
    
 }
