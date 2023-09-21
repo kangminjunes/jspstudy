@@ -50,6 +50,9 @@ public class PageVo {
   
   public String getPaging(String url) {
     
+    // <a href="https://comic.naver.com/webtoon/list?page=1">1</a>
+    // <a href="https://comic.naver.com/webtoon/list?page=2">2</a>
+     
     StringBuilder sb = new StringBuilder();
     
     sb.append("<div>");
@@ -58,7 +61,7 @@ public class PageVo {
     if(beginPage == 1) {
       sb.append("<span>이전</span>");
     } else {
-      sb.append("<a href=\""+ url + "?page=" + (beginPage - 1) + "\">이전</a>");
+      sb.append("<a href=\"" + url + "?page=" + (beginPage - 1) + "\">이전</a>");
     }
     
     // 페이지 번호
@@ -66,21 +69,21 @@ public class PageVo {
       if(p == page) {
         sb.append("<span>" + p + "</span>");
       } else {
-        sb.append("<a href=\""+ url + "?page=" + p + "\">" + p + "</a>");
+        sb.append("<a href=\"" + url + "?page=" + p + "\">" + p + "</a>");
       }
     }
     
     // 다음 블록
     if(endPage == totalPage) {
-      sb.append("<span>이후</span>");
+      sb.append("<span>다음</span>");
     } else {
-      sb.append("<a href=\""+ url + "?page=" + (endPage + 1) + "\">이후</a>");
+      sb.append("<a href=\"" + url + "?page=" + (endPage + 1) + "\">다음</a>");
     }
+    
     sb.append("</div>");
     
     return sb.toString();
     
   }
-  
   
 }

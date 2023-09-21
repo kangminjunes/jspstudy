@@ -12,7 +12,7 @@
 <body>
 
   <div>
-    <a href="${contextPath}/board/list.do">게시판목록</a>
+    <a href="${contextPath}/getArticleList.do">기사목록</a>
   </div>
 
 </body>
