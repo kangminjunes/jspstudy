@@ -3,54 +3,62 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="mybatis.mapper.book">
+<mapper namespace="repository.member">
 
-  <select id="bookCount" resultType="int">
+  <select id="memberList" resultType="domain.MemberDto">
+    SELECT MEMBER_NO, EMAIL, NAME, GENDER, ADDRESS
+    FROM MEMBER_T
+    ORDER BY MEMBER_NO DESC
+  </select>
+  
+  <select id="memberCount" resultType="int">
     SELECT COUNT(*)
-      FROM BOOK_T
-  </select>
-
-  <select id="bookList" parameterType="Map" resultType="domain.BookDto">
-    SELECT A.BOOK_NO, A.TITLE, A.AUTHOR, A.PRICE, A.PUBDATE
-      FROM (SELECT BOOK_NO, TITLE, AUTHOR, PRICE, PUBDATE, ROW_NUMBER() OVER(ORDER BY BOOK_NO DESC) AS RN
-              FROM BOOK_T) A
-     WHERE A.RN BETWEEN #{begin} AND #{end}
+    FROM MEMBER_T
   </select>
   
-  <select id="bookDetail" parameterType="int" resultType="domain.BookDto">
-    SELECT BOOK_NO, TITLE, AUTHOR, PRICE, PUBDATE
-      FROM BOOK_T
-     WHERE BOOK_NO = #{bookNo}
-  </select>
-  
-  <insert id="bookAdd" parameterType="domain.BookDto">
-    INSERT INTO BOOK_T (
-        BOOK_NO
-      , TITLE
-      , AUTHOR
-      , PRICE
-      , PUBDATE
+  <insert id="memberAdd" parameterType="domain.MemberDto">
+    INSERT INTO MEMBER_T (
+      MEMBER_NO,
+      EMAIL,
+      NAME,
+      GENDER,
+      ADDRESS
     ) VALUES (
-        BOOK_SEQ.NEXTVAL
-      , #{title}
-      , #{author}
-      , #{price}
-      , SYSDATE
+        MEMBER_SEQ.NEXTVAL,
+        #{email},
+        #{name},
+        #{gender},
+        #{address}
     )
   </insert>
   
-  <update id="bookModify" parameterType="domain.BookDto">
-    UPDATE BOOK_T
-       SET TITLE = #{title}
-         , AUTHOR = #{author}
-         , PRICE = #{price}
-     WHERE BOOK_NO = #{bookNo}
+  <select id="getMemberByEmail" parameterType="String" resultType="domain.MemberDto">
+    SELECT MEMBER_NO, EMAIL, NAME, GENDER, ADDRESS
+      FROM MEMBER_T
+     WHERE EMAIL = #{email}
+  </select>
+  
+  <update id="memberModify" parameterType="domain.MemberDto">
+    UPDATE MEMBER_T
+       SET EMAIL = #{email}
+         , NAME = #{name}
+         , GENDER = #{gender}
+         , ADDRESS = #{address}
+     WHERE MEMBER_NO = #{memberNo}
   </update>
-  
-  <delete id="bookDelete" parameterType="int">
+
+  <delete id="memberDelete" parameterType="int">
     DELETE
-      FROM BOOK_T
-     WHERE BOOK_NO = #{bookNo}
+      FROM MEMBER_T
+     WHERE MEMBER_NO = #{memberNo}
   </delete>
-  
+
 </mapper>
+
+
+
+
+
+
+
+
